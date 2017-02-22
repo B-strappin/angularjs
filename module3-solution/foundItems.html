@@ -1,0 +1,18 @@
+<ul ng-if="isArray(items.found)">
+  <li ng-repeat="item in items.found">
+    {{ item.name }} <button ng-click="items.onRemove({index: $index});">Don't want this one!</button>
+    <ul>
+    	<li>
+    		short_name: {{ item.short_name }}
+    	</li>
+    	<li>
+    		description: {{ item.description }}
+    	</li>
+    </ul>
+  </li>
+</ul>
+<div class="row" ng-if="isString(items.found)">
+	<div class="col-sm-12">
+		<h2>{{ items.found }}</h2>
+	</div>
+</div>
