@@ -1,0 +1,77 @@
+<div class="container">
+
+	<fieldset>
+	  <legend>Sign Up</legend>
+	  <form name='signupForm' novalidate>
+	    <input type="text" name="firstname" placeholder="First Name"
+	      ng-model="signup.user.firstname"
+	      required
+	      ng-maxlength="30">
+	      <span
+	        ng-if="(signupForm.firstname.$error.required) && signupForm.firstname.$touched">
+	        First name cannot be left blank
+	      </span>
+	      <span ng-if="signupForm.firstname.$error.maxlength && signupForm.firstname.$touched">
+	        First name must not be longer than 30 characters
+	      </span>
+	    </input>
+	      <br>
+
+	    <input type="text" name="lastname" placeholder="Last Name"
+	      ng-model="signup.user.lastname"
+	      required
+	      ng-maxlength="40">
+	      <span
+	        ng-if="(signupForm.lastname.$error.required) && signupForm.lastname.$touched">
+	        Last name cannot be left blank
+	      </span>
+	      <span ng-if="signupForm.lastname.$error.maxlength && signupForm.lastname.$touched">
+	        Last name must not be longer than 40 characters
+	      </span>
+	    </input>
+	      <br>
+
+	    <input type="email" name="email" placeholder="Email"
+	      ng-model="signup.user.email"
+	      required>
+	      <span ng-if="signupForm.email.$invalid && signupForm.email.$touched">
+	        Must be a valid email address: handle@domain format
+	      </span>
+	      <br>
+
+	    <input type="text" name="phone" placeholder="Phone ###-###-####"
+	      ng-model="signup.user.phone"
+	      pattern="(\d{3})-(\d{3})-(\d{4})">
+	      <span ng-if="signupForm.phone.$invalid && signupForm.phone.$touched">
+	        Phone must be in the format ###-###-####.
+	      </span>
+	      <br>
+
+	    <input type="text" name="favorite" placeholder="Menu # of your favorite dish?"
+	    	ng-model="signup.user.favorite"
+	    	ng-model-options="{ updateOn: 'blur' }"
+	    	required
+	    	favorite-check>
+	    	<span
+	        ng-if="signupForm.favorite.$error.required && signupForm.favorite.$touched">
+	        Please tell us what your favorite meal is at David Chu's.
+	      </span>
+	      <span 
+	      	ng-if="signupForm.favorite.$error.favoriteCheck">
+	      	No such menu number exists.
+	      </span>
+	      <br>
+
+	    <button
+	      ng-disabled="signupForm.$invalid"
+	      ng-click="signup.submit()"
+	      class="btn btn-success">Submit</button>
+
+	  </form>
+	</fieldset>
+
+	<div ng-if="!signup.error">
+		<h3>{{ signup.successMessage }}</h3>
+	</div>
+
+</div>
